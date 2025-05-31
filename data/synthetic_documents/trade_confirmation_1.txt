@@ -1,0 +1,8 @@
+TradeID: TRD14804
+TradeDate: 2024-10-11
+Instrument: MSFT
+Buy/Sell: Buy
+Quantity: 3508
+Price: 345.45
+Counterparty: UBS
+SettlementDate: 2024-10-13

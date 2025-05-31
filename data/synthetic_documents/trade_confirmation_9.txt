@@ -1,0 +1,8 @@
+TradeID: TRD32205
+TradeDate: 2025-03-13
+Instrument: META
+Buy/Sell: Buy
+Quantity: 4287
+Price: 124.64
+Counterparty: Citadel
+SettlementDate: 2025-03-15

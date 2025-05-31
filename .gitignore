@@ -1,0 +1,50 @@
+# 1. Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 2. Virtual environment folder
+venv/
+env/
+ENV/
+# (Or any folder you used for your virtualenv)
+
+# 3. IDE/editor config files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.idea/
+
+# 4. OS‐specific files
+.DS_Store
+Thumbs.db
+
+# 5. Jupyter checkpoints (if any notebooks are added later)
+.ipynb_checkpoints/
+
+# 6. Streamlit cache (optional)
+.streamlit/
+
+# 7. spaCy training artifacts (DocBin) and model output (if you want to keep them local)
+data/ner_training/train.spacy
+output/
+
+# 8. Alteryx, PEGA, or other binary workflow files (if you add them)
+*.yxmd
+*.yxmc
+*.rgx
+
+# 9. Large data or generated files (optional — exclude if you don’t want to track synthetic data in Git)
+#    If you prefer to keep synthetic documents in version control, remove these lines. Otherwise, comment them out.
+data/synthetic_documents/
+data/workflow_output/
+data/reports/
+data/audit_logs/
+
+# 10. Log files
+*.log
+
+# 11. Secrets or credentials (never commit these)
+*.env
+*.secret
+config.ini

@@ -1,0 +1,6 @@
+spacy
+faker
+jinja2
+pandas
+python-docx
+pdfminer.six

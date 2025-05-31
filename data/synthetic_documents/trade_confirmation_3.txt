@@ -1,0 +1,8 @@
+TradeID: TRD78552
+TradeDate: 2023-07-09
+Instrument: MSFT
+Buy/Sell: Sell
+Quantity: 2832
+Price: 294.81
+Counterparty: Goldman Sachs
+SettlementDate: 2023-07-11

@@ -1,0 +1,8 @@
+TradeID: TRD30018
+TradeDate: 2024-12-09
+Instrument: TSLA
+Buy/Sell: Buy
+Quantity: 4521
+Price: 264.36
+Counterparty: Citadel
+SettlementDate: 2024-12-11

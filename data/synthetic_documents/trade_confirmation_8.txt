@@ -1,0 +1,8 @@
+TradeID: TRD36009
+TradeDate: 2024-07-09
+Instrument: AAPL
+Buy/Sell: Sell
+Quantity: 4052
+Price: 434.51
+Counterparty: JPMorgan
+SettlementDate: 2024-07-11

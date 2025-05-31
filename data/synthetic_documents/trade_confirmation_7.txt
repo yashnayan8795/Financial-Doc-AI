@@ -1,0 +1,8 @@
+TradeID: TRD53740
+TradeDate: 2024-03-02
+Instrument: TSLA
+Buy/Sell: Sell
+Quantity: 4161
+Price: 347.25
+Counterparty: Citadel
+SettlementDate: 2024-03-04

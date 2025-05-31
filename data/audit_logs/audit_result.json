@@ -1,0 +1,79 @@
+{
+    "extracted": {
+        "TRADE_ID": "TRD0001234",
+        "TRADE_DATE": "2024-05-01",
+        "INSTRUMENT": "500",
+        "SIDE": "Buy",
+        "PRICE": "150.25",
+        "COUNTERPARTY": "Goldman Sachs",
+        "SETTLEMENT_DATE": "2024-05-03"
+    },
+    "pega_result": {
+        "status": "Manual Review",
+        "errors": [
+            "Unsupported currency.",
+            "Amount must be greater than 0.",
+            "Invalid account number.",
+            "Sender name missing."
+        ],
+        "data": {
+            "TRADE_ID": "TRD0001234",
+            "TRADE_DATE": "2024-05-01",
+            "INSTRUMENT": "500",
+            "SIDE": "Buy",
+            "PRICE": "150.25",
+            "COUNTERPARTY": "Goldman Sachs",
+            "SETTLEMENT_DATE": "2024-05-03"
+        }
+    },
+    "reconciliation": [
+        {
+            "Field": "TRADE_ID",
+            "Extracted": "TRD0001234",
+            "Golden": "TRD0001234",
+            "Status": "MATCH"
+        },
+        {
+            "Field": "TRADE_DATE",
+            "Extracted": "2024-05-01",
+            "Golden": "2024-05-01",
+            "Status": "MATCH"
+        },
+        {
+            "Field": "INSTRUMENT",
+            "Extracted": "500",
+            "Golden": "AAPL",
+            "Status": "MISMATCH"
+        },
+        {
+            "Field": "SIDE",
+            "Extracted": "Buy",
+            "Golden": "Buy",
+            "Status": "MATCH"
+        },
+        {
+            "Field": "QUANTITY",
+            "Extracted": "MISSING",
+            "Golden": "500",
+            "Status": "MISMATCH"
+        },
+        {
+            "Field": "PRICE",
+            "Extracted": "150.25",
+            "Golden": "150.25",
+            "Status": "MATCH"
+        },
+        {
+            "Field": "COUNTERPARTY",
+            "Extracted": "Goldman Sachs",
+            "Golden": "Goldman Sachs",
+            "Status": "MATCH"
+        },
+        {
+            "Field": "SETTLEMENT_DATE",
+            "Extracted": "2024-05-03",
+            "Golden": "2024-05-03",
+            "Status": "MATCH"
+        }
+    ]
+}

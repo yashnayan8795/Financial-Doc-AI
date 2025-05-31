@@ -1,0 +1,10 @@
+{
+  "TRADE_ID": "TRD0001234",
+  "TRADE_DATE": "2024-05-01",
+  "INSTRUMENT": "AAPL",
+  "SIDE": "Buy",
+  "QUANTITY": "500",
+  "PRICE": "150.25",
+  "COUNTERPARTY": "Goldman Sachs",
+  "SETTLEMENT_DATE": "2024-05-03"
+}

@@ -1,0 +1,8 @@
+TradeID: TRD64178
+TradeDate: 2023-06-09
+Instrument: AAPL
+Buy/Sell: Buy
+Quantity: 1799
+Price: 216.58
+Counterparty: Morgan Stanley
+SettlementDate: 2023-06-11

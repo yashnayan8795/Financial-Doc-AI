@@ -1,0 +1,8 @@
+TradeID: TRD97575
+TradeDate: 2024-08-14
+Instrument: MSFT
+Buy/Sell: Buy
+Quantity: 3671
+Price: 244.45
+Counterparty: Citadel
+SettlementDate: 2024-08-16

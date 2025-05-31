@@ -1,0 +1,8 @@
+TradeID: TRD49055
+TradeDate: 2025-04-04
+Instrument: TSLA
+Buy/Sell: Buy
+Quantity: 1178
+Price: 445.88
+Counterparty: UBS
+SettlementDate: 2025-04-06

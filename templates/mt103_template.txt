@@ -1,0 +1,12 @@
+{1:F01{{ sender_bic }}2222123456}{2:O103{{ time }}{{ date }}{{ receiver_bic }}2222123456{{ date }}{{ time }}N}{4:
+:20:{{ transaction_ref }}
+:23B:CRED
+:32A:{{ value_date }}{{ currency }}{{ amount }}
+:50K:/{{ sender_account }}
+{{ sender_name }}
+{{ sender_address }}
+:59:/{{ receiver_account }}
+{{ receiver_name }}
+{{ receiver_address }}
+:71A:OUR
+-}
