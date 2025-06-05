@@ -1,58 +1,91 @@
 import streamlit as st
-import os
 import json
-
 from mock_pega_workflow import route_workflow
 from reconcile_data import reconcile
-from audit import write_audit_log
-from data.ner_training.ner_predict import extract_entities_from_text
+from ner_predict import extract_entities_from_text
+import pandas as pd
+import os
+import torch
 
 
-st.set_page_config(page_title="Financial Doc AI", layout="wide")
-st.title("📄 AI-Powered Financial Document Automation")
+# Set page config
+st.set_page_config(
+    page_title="Financial Doc AI",
+    page_icon="📄",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-uploaded_file = st.file_uploader("Upload financial document", type=["txt"])
-if uploaded_file is not None:
-    text = uploaded_file.read().decode("utf-8")
-    st.subheader("📌 Raw Text")
-    st.text(text)
+# Title and instructions
+st.title("📄 Financial Document AI")
+st.markdown("""
+A Smart System for Entity Extraction, Validation, and Reconciliation of Financial Docs.
 
-    # 1) Run NER to get a dict { label: entity_text }
-    entities = extract_entities_from_text(text)
-    st.subheader("🔍 Extracted Entities")
-    st.json(entities)
+### 📝 Instructions
+1. Upload a financial document (PDF or TXT).
+2. Choose an action: Entity Extraction & Validation or Reconciliation.
+3. View and download the output.
+""")
 
-    # 2) Run PEGA validation/routing
-    pega_result = route_workflow(entities)
-    st.subheader("✅ PEGA Workflow Result")
-    st.json(pega_result)
+# Sidebar
+with st.sidebar:
+    st.header("Upload Document")
+    uploaded_file = st.file_uploader("Choose a file (PDF or TXT)", type=["pdf", "txt"])
+    action = st.radio("Select Action", ["Extract & Validate", "Reconcile with Golden Source"])
 
-    # 3) Load the golden (ground-truth) data from JSON
-    golden_path = "data/golden_source/golden_source.json"
-    if os.path.exists(golden_path):
-        with open(golden_path) as f:
-            golden_dict = json.load(f)
+# Main Workflow
+if uploaded_file:
+    st.success(f"✅ Uploaded: {uploaded_file.name}")
+
+    # Read uploaded file content
+    file_text = uploaded_file.read().decode("utf-8")
+
+    # Entity Extraction
+    with st.spinner("🔍 Extracting entities..."):
+        extracted_entities = extract_entities_from_text(file_text)
+
+    st.subheader("🧠 Extracted Entities")
+    st.json(extracted_entities)
+
+    with st.expander("📄 View Raw Text"):
+        st.text(file_text)
+
+    # Validation
+    with st.spinner("🔎 Validating entities..."):
+        validation_result = route_workflow(extracted_entities)
+
+    if validation_result.get("status") == "error":
+        st.error(f"❌ Error: {validation_result['message']}")
     else:
-        st.error(f"Golden source file not found at {golden_path}")
-        st.stop()  # stop the app here if golden is missing
+        st.success("✅ Entities validated successfully.")
 
-    # 4) Run reconciliation: pass both extracted and golden
-    recon_result = reconcile(entities, golden_dict)
-    st.subheader("📊 Reconciliation Result")
-    st.json(recon_result)
+    # Reconciliation
+    if action == "Reconcile with Golden Source":
+        if os.path.exists("data/golden_source/golden_data.json"):
+            with open("data/golden_source/golden_data.json") as f:
+                golden_data = json.load(f)
 
-    # 5) Write to audit log
-    write_audit_log({
-        "extracted": entities,
-        "pega_result": pega_result,
-        "reconciliation": recon_result
-    })
-    st.success("✅ Audit log updated.")
+            st.info("🔁 Running Reconciliation with golden source...")
+            recon_result = reconcile(extracted_entities, golden_data)
 
-    # 6) Show the latest audit log
-    audit_path = "data/audit_logs/audit_result.json"
-    if os.path.exists(audit_path):
-        with open(audit_path) as f:
-            logs = json.load(f)
-        st.subheader("🗂️ Audit Trail")
-        st.json(logs)
+            st.subheader("🔍 Reconciliation Result")
+            st.dataframe(recon_result)
+
+
+            csv_data = recon_result.to_csv(index=False).encode("utf-8")
+            st.download_button(
+                label="📥 Download Reconciliation Report",
+                data=csv_data,
+                file_name="reconciliation_report.csv",
+                mime="text/csv"
+            )
+        else:
+            st.warning("⚠️ Golden source file not found at 'data/golden_source/golden_data.json'")
+
+else:
+    st.info("⬅️ Please upload a file to begin.")
+
+
+
+if not hasattr(torch, 'classes'):
+    torch.classes = type('classes', (), {})()
